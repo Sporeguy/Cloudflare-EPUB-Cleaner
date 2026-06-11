@@ -126,7 +126,7 @@ function replaceInBytes(bytes) {
              .replace(/&gt;&gt;/g, '\u00bb')
              .replace(/<</g,       '\u00ab')
              .replace(/>>/g,       '\u00bb')
-             .replace(/<([A-Z][^>]*|[^>]*[?!][^>]*)>/g, '$1');
+             .replace(/<([^>=]*\s[^>=]*)>/g, '$1');
   return enc.encode(text);
 }
 
