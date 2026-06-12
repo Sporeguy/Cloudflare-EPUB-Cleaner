@@ -126,7 +126,8 @@ function replaceInBytes(bytes) {
     .replace(/&lt;&lt;/g, '\u00ab')
     .replace(/&gt;&gt;/g, '\u00bb')
     .replace(/<</g,       '\u00ab')
-    .replace(/>>/g,       '\u00bb');
+    .replace(/>>/g,       '\u00bb')
+    .replace(/<([^<>\n]+[.,!?;:\-])>/g, '$1');
   return enc.encode(text);
 }
 
