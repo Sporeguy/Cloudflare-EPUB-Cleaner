@@ -122,11 +122,13 @@ function replaceInBytes(bytes) {
   const dec = new TextDecoder('utf-8', { fatal: false });
   const enc = new TextEncoder();
   let text = dec.decode(bytes);
-  text = text.replace(/&lt;&lt;/g, '\u00ab')
-             .replace(/&gt;&gt;/g, '\u00bb')
-             .replace(/<</g,       '\u00ab')
-             .replace(/>>/g,       '\u00bb')
-             .replace(/<([^>=]*\s[^>=]*)>/g, '$1');
+  text = text
+    .replace(/&lt;&lt;/g, '\u00ab')
+    .replace(/&gt;&gt;/g, '\u00bb')
+    .replace(/<</g,       '\u00ab')
+    .replace(/>>/g,       '\u00bb')
+    .replace(/&lt;(?!\/?[A-Za-z_:][A-Za-z0-9_.:-]*(?:\s|\/?&gt;|$))([^<>\n]+)&gt;/g, '$1')
+    .replace(/<(?!\/?[A-Za-z_:][A-Za-z0-9_.:-]*(?:\s|\/?>|$))([^<>\n]+)>/g, '$1');
   return enc.encode(text);
 }
 
